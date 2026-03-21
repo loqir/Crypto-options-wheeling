@@ -18,7 +18,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: 3.9.6 
+          python-version: 3.9.6
 
       # Step 3: Install dependencies
       - name: Install dependencies
@@ -30,3 +30,14 @@ jobs:
       - name: Run the Python script
         run: |
           python run.py
+
+      # Step 5: Commit and push HTML files to the repository
+      - name: Commit and push HTML files
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+          git add output/*.html  # Matches all HTML files in the output directory
+          git commit -m "Add generated HTML files"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
