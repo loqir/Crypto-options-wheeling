@@ -5,6 +5,7 @@ import os
 def execute(asset, time_series=True):
     # Ensure the output directory exists
     output_dir = "output"
+    os.makedirs(output_dir, exist_ok=True)
 
     instruments_data = get_option_instruments(asset)
     df = format_instruments(instruments_data)
