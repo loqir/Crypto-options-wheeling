@@ -281,7 +281,7 @@ def build_time_series_plot(
                     x=grp[x_col],
                     y=grp[y_col],
                     mode="markers",
-                    name=str(group_value),  # Legend name
+                    name=str(group_value).split("-")[1],  # Legend name
                     marker=dict(color=line_color, size=10),
                     text=grp["instrument_name"],
                     customdata=np.stack(
