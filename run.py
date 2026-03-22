@@ -17,7 +17,7 @@ def build_index_page(output_dir, generated_files):
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Crypto Options Reports</title>
+    <title>Crypto Options Greeks Plots</title>
     <style>
         body {{ font-family: Arial, sans-serif; margin: 24px; }}
         h1 {{ margin-bottom: 12px; }}
@@ -94,11 +94,13 @@ def execute(asset, time_series=True):
         generated_files.append(time_series_theta_by_strike_html)
         print(Path(time_series_theta_by_strike_html).resolve())
 
-    index_file = build_index_page(output_dir, generated_files)
-    print(Path(index_file).resolve())
-
     print("Execution complete")
+    return generated_files
 
 if __name__ == "__main__":
-    execute("BTC")
-    execute("ETH")
+    all_generated_files = []
+    all_generated_files.extend(execute("BTC"))
+    all_generated_files.extend(execute("ETH"))
+
+    index_file = build_index_page("output", all_generated_files)
+    print(Path(index_file).resolve())
