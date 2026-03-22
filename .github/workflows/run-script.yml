@@ -7,7 +7,7 @@ on:
   workflow_dispatch: # enable manual triggering
 
 env:
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
 
 permissions:
   contents: write
@@ -17,6 +17,8 @@ permissions:
 jobs:
   run-script:
     runs-on: ubuntu-latest
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
 
     steps:
       # Step 1: Check out the repository
@@ -77,6 +79,8 @@ jobs:
   deploy-pages:
     needs: run-script
     runs-on: ubuntu-latest
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}

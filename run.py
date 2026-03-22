@@ -8,16 +8,28 @@ def build_index_page(output_dir, generated_files):
     output_path = Path(output_dir)
     index_path = output_path / "index.html"
 
-    links = "\n".join(
-        f"<li><a href='{Path(file_name).name}'>{Path(file_name).name}</a></li>"
-        for file_name in generated_files
-    )
+    grouped_files = {}
+    for file_name in generated_files:
+        file_path = Path(file_name)
+        file_name_only = file_path.name
+        asset = file_path.stem.split("_", 1)[0].upper()
+        grouped_files.setdefault(asset, []).append(file_name_only)
+
+    grouped_links = []
+    for asset in sorted(grouped_files.keys()):
+        asset_links = "\n".join(
+            f"<li><a href='{name}'>{name}</a></li>"
+            for name in sorted(grouped_files[asset])
+        )
+        grouped_links.append(f"<h2>{asset}</h2><ul>{asset_links}</ul>")
+
+    links_section = "\n".join(grouped_links)
 
     index_html = f"""
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Crypto Options Greeks Plots</title>
+    <title>Crypto Options Live and Historical Greeks Plots from Deribit</title>
     <style>
         body {{ font-family: Arial, sans-serif; margin: 24px; }}
         h1 {{ margin-bottom: 12px; }}
@@ -25,10 +37,8 @@ def build_index_page(output_dir, generated_files):
     </style>
 </head>
 <body>
-    <h1>Crypto Options Reports</h1>
-    <ul>
-        {links}
-    </ul>
+    <h1>Crypto Options Live and Historical Greeks Plots from Deribit</h1>
+    {links_section}
 </body>
 </html>
 """.strip()
