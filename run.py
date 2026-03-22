@@ -38,7 +38,7 @@ def build_index_page(output_dir, generated_files):
 
 def execute(asset, time_series=True):
     # Ensure the output directory exists
-    output_dir = "docs"
+    output_dir = "output"
     os.makedirs(output_dir, exist_ok=True)
 
     generated_files = []
