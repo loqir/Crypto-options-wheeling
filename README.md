@@ -66,16 +66,13 @@ Then open:
 
 - output/index.html
 
-## Notebook
-
-Use run_execute.ipynb if you want to run the workflow interactively instead of from the terminal.
 
 ## Automation
 
 The GitHub Actions workflow runs every 6 hours or on manual trigger. It:
 
 1. installs dependencies
-2. runs the script
+2. runs the script to update data
 3. updates generated HTML and parquet files
 4. deploys the output to GitHub Pages
 
