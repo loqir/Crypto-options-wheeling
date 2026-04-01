@@ -10,7 +10,7 @@ It is mainly meant to help answer two questions:
 3. For a given expiry, how do the theta across different strikes compare?
 
 
-The project currently supports BTC and ETH and also saves a rolling history so you can view time-series changes.
+The project currently supports BTC and ETH and also saves a rolling history to view historical changes.
 
 ## What it does
 
@@ -23,7 +23,6 @@ The workflow is:
 5. save historical snapshots to parquet files
 6. build an index page linking all outputs
 
-This is a screening and visualization tool, not a trade execution system.
 
 ## Main files
 
