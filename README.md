@@ -4,8 +4,11 @@ This project pulls live crypto option data from Deribit and generates HTML dashb
 
 It is mainly meant to help answer two questions:
 
-1. For a given strike, which expiry offers the best theta?
-2. For a given expiry, which strike offers the best theta?
+1. For a given strike, how do the theta across different expiries compare?
+   1.1 How has this been changing over a recent time period?
+   
+3. For a given expiry, how do the theta across different strikes compare?
+
 
 The project currently supports BTC and ETH and also saves a rolling history so you can view time-series changes.
 
